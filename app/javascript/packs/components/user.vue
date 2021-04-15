@@ -109,7 +109,7 @@ export default {
    return axios
    .get("http://localhost:3000/users")
    .then(response => {
-      console.log(response.data);
+      console.log('RES', response.data);
       this.desserts = response.data;
       })
    .catch(e => {
@@ -148,9 +148,22 @@ export default {
       .catch(error => {
        console.log(error);
     });
-  } else {}
+  } else {
+     axios
+      .post(`http://localhost:3000/users/`, {
+     user: this.editedItem
+      })
+      .then(response => {
+      console.log(response);
+      console.log("Created!");
+      this.initialize();
+      })
+      .catch(error => {
+      console.log(error);
+   });
+   }
   this.close();
-}
+},
   close() {
       this.dialog = false;
       setTimeout(() => {
